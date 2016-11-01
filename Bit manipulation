@@ -20,6 +20,7 @@ public class Solution {
 }
 
 Follow up Answer:
+用Map记录之前反转过的数字和结果,更好的优化方法是将其按照Byte分成4段存储，节省空间;
 // cache
 private final Map<Byte, Integer> cache = new HashMap<Byte, Integer>();
 public int reverseBits(int n) {
