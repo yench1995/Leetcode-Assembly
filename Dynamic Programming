@@ -9,10 +9,12 @@ Given a list of non-negative integers representing the amount of money of each h
 determine the maximum amount of money you can rob tonight without alerting the police.
 
 Answer: 
-/*
-**The key point is to find the relationship: dp[i] = Math.max(dp[i-1], dp[i-2]+nums[i]).
-**where dp[i] means the maxSum at nums[i] that have no adjacent numbers.
-*/
+/**
+ * The key point is to find the relationship: dp[i] = Math.max(dp[i-1], dp[i-2]+nums[i]).
+ * where dp[i] means the maxSum at nums[i] that have no adjacent numbers.
+ * Time complexity : O(n).
+ * Space complexity : O(n).
+ **/
 public class Solution {
     public int Rob(int[] nums) {
         if(nums == null || nums.Length == 0)
