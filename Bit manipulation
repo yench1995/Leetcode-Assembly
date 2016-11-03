@@ -8,6 +8,10 @@ Follow up: If this function is called many times, how would you optimize it?
 Solution 1: 
 time complexity O(1) space complexity O(1)
 原数右移取出最低位，赋值给新数最低位再左移；
+/** 
+ * Time complexity O(1);
+ * Space complexity O(1) ;
+ */
 public class Solution {
     // you need treat n as an unsigned value
     public int reverseBits(int n) {
