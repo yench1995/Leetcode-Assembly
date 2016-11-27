@@ -1,3 +1,11 @@
+Summary：
+& AND 两个位都为1时，结果为1
+| OR  两个位都为0时，结果为0
+^ XOR 两个位相同为0， 相异为1
+~ NOT 取反操作
+<< 各二进位全部左移若干位，高位丢弃，低位补0
+>> 各二进位全部右移若干位，对无符号数，高位补0，有符号数，各编译器处理方法不一样，有的补符号位（算术右移），有的补0（逻辑右移）
+
 Problem 1:
 Reverse bits of a given 32 bits unsigned integer.
 
@@ -53,4 +61,20 @@ private int reverseByte(byte b) {
     }
     cache.put(b, value);
     return value;
+}
+
+Problem 2:
+Calculate the sum of two integers a and b, but you are not allowed to use the operator + and -.
+/**
+ * sum means the no-carry bit
+ * carry means the carry bit << 1
+ * until the carry = 0
+ */
+public class Solution {
+    public int GetSum(int a, int b) {
+        if(b == 0) return a;
+        int sum = a ^ b;
+        int carry = (a & b) << 1;
+        return GetSum(sum, carry);
+    }
 }
