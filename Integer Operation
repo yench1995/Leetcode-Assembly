@@ -30,3 +30,30 @@ public class Solution {
         return reverse;
     }
 }
+
+Problem 2： Excel Sheet Column Title
+
+Given a positive integer, return its corresponding column title as appear in an Excel sheet.
+
+For example:
+
+    1 -> A
+    2 -> B
+    3 -> C
+    ...
+    26 -> Z
+    27 -> AA
+    28 -> AB 
+/**
+ * Don't need to list every corresponding charater
+ * Juse use the (char)('A' + (n-1) % 26)
+ * Skillfully use recursion to aboid reverse operation
+ */
+public class Solution {
+    public string ConvertToTitle(int n) {
+        if (n == 0) {
+            return "";
+        }
+        return ConvertToTitle((n - 1) / 26) + (char)((n - 1) % 26 + 'A');
+    }
+}
