@@ -1,0 +1,40 @@
+The basic operation of Map in C#
+Dictionary<AnyType, Anytype> dic = new Dictionary<Anytype, AnyType>();
+dic.Add(val, val); AnyType[a] = dic[index];
+
+13. Roman to Integer
+
+Given a roman numeral, convert it to an integer.
+
+Input is guaranteed to be within the range from 1 to 3999.
+
+Solution:
+/*
+ * use a map to put key values and find the Integer quickly
+ */
+public class Solution {
+    public int RomanToInt(string s) {
+        if (s == null || s.Length==0) {
+                return 0;
+	    }
+	    Dictionary<Char, int> m = new Dictionary<Char, int>();
+	    m.Add('I', 1);
+	    m.Add('V', 5);
+	    m.Add('X', 10);
+	    m.Add('L', 50);
+	    m.Add('C', 100);
+	    m.Add('D', 500);
+	    m.Add('M', 1000);
+
+	    int length = s.Length;
+	    int result = m[s[length-1]];
+	    for (int i = length - 2; i >= 0; i--) {
+	        if (m[s[i+1]] <= m[s[i]]) {
+	            result += m[s[i]];
+	        } else {
+	            result -= m[s[i]];
+	        }
+	    }
+	    return result;
+    }
+}
