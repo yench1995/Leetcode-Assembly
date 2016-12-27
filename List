@@ -170,3 +170,32 @@ public class Solution {
         }
     }
 }
+
+<Clever Algorithms>
+Problem 11. Container With Most Water
+
+Given n non-negative integers a1, a2, ..., an, where each represents a point at coordinate (i, ai). 
+n vertical lines are drawn such that the two endpoints of line i is at (i, ai) and (i, 0). 
+Find two lines, which together with x-axis forms a container, such that the container contains the most water.
+
+/*
+ * Use two pointers to solve, one from the start, one from the end
+ * We only need to move the higher boundary, but remain the lower boundary
+ * In this case, it is O(n) time complexity
+ */
+public class Solution {
+    public int MaxArea(int[] height) {
+        int maxArea = 0; 
+        int start = 0;
+        int end = height.Length - 1;
+        while(start < end)
+        {
+            int area = height[start] >= height[end] ? height[end] * (end - start) : height[start] * (end - start);
+            if(area > maxArea) maxArea = area;
+            if(height[end] >= height[start]) start++;
+            else end--;
+        }
+        
+        return maxArea;
+    }
+}
