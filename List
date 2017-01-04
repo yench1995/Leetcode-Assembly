@@ -199,3 +199,55 @@ public class Solution {
         return maxArea;
     }
 }
+
+
+15. 3Sum
+
+Given an array S of n integers, are there elements a, b, c in S such that a + b + c = 0? 
+Find all unique triplets in the array which gives the sum of zero.
+
+public class Solution {
+    public IList<IList<int>> ThreeSum(int[] nums) {
+        IList<IList<int>> ret = new List<IList<int>>();
+        if(nums.Length < 3) return ret;
+        Array.Sort(nums);
+        Dictionary<string, bool> myDic = new Dictionary<string, bool>();
+        string str;
+        int start;
+        int end = nums.Length-1;
+        for(int i = 0; i < nums.Length - 2; i++)
+        {
+            start = i + 1;
+            while(start < end)
+            {
+                if(nums[i] + nums[start] + nums[end] == 0)
+                {
+                    str = nums[i].ToString() + nums[start].ToString() + nums[end].ToString();
+                    if(myDic.ContainsKey(str))
+                    {
+                        start++;
+                        end--;
+                    }
+                    else
+                    {
+                        myDic.Add(str, true);
+                        IList<int> triplet = new List<int>{nums[i], nums[start], nums[end]};
+                        ret.Add(triplet);
+                        start++;
+                        end--;
+                    }
+                }
+                else if(nums[i] + nums[start] + nums[end] > 0)
+                {
+                    end--;
+                }
+                else
+                {
+                    start++;
+                }
+            }
+        }
+        return ret;
+
+    }
+}
