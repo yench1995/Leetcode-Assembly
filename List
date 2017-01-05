@@ -207,6 +207,10 @@ Given an array S of n integers, are there elements a, b, c in S such that a + b 
 Find all unique triplets in the array which gives the sum of zero.
 
 public class Solution {
+/* 
+ * Fix one point and push on
+ * Use two pointers from the beginning and end.
+ */
     public IList<IList<int>> ThreeSum(int[] nums) {
         IList<IList<int>> ret = new List<IList<int>>();
         if(nums.Length < 3) return ret;
@@ -214,10 +218,11 @@ public class Solution {
         Dictionary<string, bool> myDic = new Dictionary<string, bool>();
         string str;
         int start;
-        int end = nums.Length-1;
+        int end;
         for(int i = 0; i < nums.Length - 2; i++)
         {
             start = i + 1;
+            end = nums.Length - 1;
             while(start < end)
             {
                 if(nums[i] + nums[start] + nums[end] == 0)
