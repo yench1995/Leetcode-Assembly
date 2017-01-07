@@ -1,0 +1,49 @@
+Problem 1:
+22. Generate Parentheses
+Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
+For example, given n = 3, a solution set is:
+[
+  "((()))",
+  "(()())",
+  "(())()",
+  "()(())",
+  "()()()"
+]
+
+Solution: 
+/*
+ * This is an example about Catalan number
+ * The definition of Catalan number on Wiki -- https://en.wikipedia.org/wiki/Catalan_number
+ * It uses recursion to solve
+ * One point to remember is that if using StringBuilder, clear the StringBuilder because there is only one StringBuilder instance
+ * But if using string + string, don't need to clear because 
+ * because each time using a "+" operation, a new string created and then assigned to the left hand variable
+ */
+public IList<string> GenerateParenthesis(int n) {
+        IList<string> myList = new List<string>();
+        if(n <= 0) return myList;
+        StringBuilder sb = new StringBuilder();
+        helper(n, n, sb, myList);
+        return myList;
+        
+    }
+    
+    void helper(int l, int r, StringBuilder sb, IList<string> list)
+    {
+        if(r < l) return;
+        if(l == 0 && r == 0)
+        {
+            list.Add(sb.ToString());
+        }
+        if(l > 0)
+        {
+            helper(l-1, r, sb.Append("("), list);
+            sb.Remove(sb.Length - 1, 1);
+        }   
+        if(r > 0)
+        {
+            helper(l, r-1, sb.Append(")"), list);
+            sb.Remove(sb.Length - 1, 1);
+        }
+    }
+}
