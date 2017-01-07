@@ -50,6 +50,7 @@ Solution:
 /*
  * Use the Deep First Search to get all the possibilities
  * Build a map to store the relationship between phone number and char[] characters
+ * If use a StringBuilder, remember to clear the StringBuilder for second use
  */
 public class Solution {
     public IList<string> LetterCombinations(string digits) {
