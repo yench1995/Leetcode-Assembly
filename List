@@ -394,8 +394,7 @@ public class Solution {
         {
             range[0] = range[1] = -1;
             return range;
-        }
-        
+        }        
         return range;
     }
 }
