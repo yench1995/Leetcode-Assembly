@@ -433,3 +433,51 @@ public class Solution {
         return start;
     }
 }
+
+Problem 47：Permutations II
+
+Given a collection of numbers that might contain duplicates, return all possible unique permutations.
+For example,
+[1,1,2] have the following unique permutations:
+[
+  [1,1,2],
+  [1,2,1],
+  [2,1,1]
+]
+
+public class Solution {
+    public IList<IList<int>> PermuteUnique(int[] nums) {
+        IList<IList<int>> myList = new List<IList<int>>();
+        if(nums == null || nums.Length == 0) return myList;
+        bool[] used = new bool[nums.Length];
+        Array.Sort(nums);
+        IList<int> subList = new List<int>();
+        helper(myList, subList, nums, used);
+        return myList;
+        
+    }
+    
+    private void helper(IList<IList<int>> myList, IList<int> subList, int[] nums, bool[] used)
+    {
+        if(subList.Count() == nums.Length)
+        {
+            myList.Add(new List<int>(subList));
+            return;
+        }
+        
+        for(int i = 0; i < nums.Length; i++)
+        {
+            if(used[i] == true || (i > 0 && nums[i] == nums[i - 1] && used[i - 1] == false))
+                continue;
+            /**
+             * The code above is to avoid the influence of duplicate numbers
+             * maintain the sequence of the duplicate numbers in a sorted array
+             */
+            subList.Add(nums[i]);
+            used[i] = true;
+            helper(myList, subList, nums, used);
+            subList.RemoveAt(subList.Count() - 1);
+            used[i] = false;
+        }
+    }
+}
